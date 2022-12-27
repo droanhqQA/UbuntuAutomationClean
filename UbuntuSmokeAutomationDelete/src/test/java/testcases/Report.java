@@ -46,7 +46,7 @@ public class Report {
 		
 		if(os.contains("windows"))
 				{
-			final URL resource = Base_Class.class.getResource(driver_type);
+			final URL resource = Report.class.getResource(driver_type);
 			System.setProperty("webdriver.chrome.driver", resource.getFile());
 				}
 		else
