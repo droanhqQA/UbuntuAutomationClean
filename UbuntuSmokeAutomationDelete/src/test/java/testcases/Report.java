@@ -40,10 +40,19 @@ public class Report {
 		String u_pass = "qwerty";
 		String con_name, con_string, con_uname, con_upass, con_db;
 		// System.out.println(detailDAO.connectionName()+"\n"+detailDAO.connectionString());
-		final URL driver_path = Report.class.getResource("/chromedriver.exe");
-	       System.out.println(driver_path);
+		String os=System.getProperty("os.name").toLowerCase();
+		System.out.println("OS name: "+os);
+		String driver_type = os.contains("windows") ? "/chromedriver.exe" :"/var/lib/jenkins/driver/chromedriver";
 		
-		System.setProperty("webdriver.chrome.driver", (driver_path.toString().substring("file:/".length(),driver_path.toString().length())));
+		if(os.contains("windows"))
+				{
+			final URL resource = Base_Class.class.getResource(driver_type);
+			System.setProperty("webdriver.chrome.driver", resource.getFile());
+				}
+		else
+			System.setProperty("webdriver.chrome.driver", driver_type);
+		
+		//System.setProperty("webdriver.chrome.driver", (driver_path.toString().substring("file:/".length(),driver_path.toString().length())));
 
 				ChromeOptions options = new ChromeOptions();
 					options.addArguments("headless");
@@ -99,16 +108,17 @@ public class Report {
 	@AfterMethod
 	public void tearOff(ITestResult result)
 	{
+		
 		try {
 			if(ITestResult.FAILURE==result.getStatus())
 			{
-			new TakeScreenshots().takeScreenShot(result.getName(),"Permission",driver);
+			new TakeScreenshots().takeScreenShot(result.getName(),"DelteAll",driver);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
-		//driver.quit();
+		driver.quit();
 	}
 }
