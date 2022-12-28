@@ -35,7 +35,12 @@ public class AllDelete {
 		.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='"+conn_name+"']/ancestor-or-self::div[@class='table-row']/div/div[5]")));
 		driver.findElement(By.xpath("//*[text()='"+conn_name+"']/ancestor-or-self::div[@class='table-row']/div/div[5]")).click();
 		driver.findElement(By.xpath("//*[text()='"+conn_name+"']/ancestor-or-self::div[@class='table-row']/div/div[5]/div/div[4]")).click();
-		driversleep();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		driver.findElement(By.xpath("//div[@class='event-button-click yes']")).click();
 		System.out.println( conn_name+" deleted");
 		}
