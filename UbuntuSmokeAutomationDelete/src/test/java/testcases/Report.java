@@ -36,8 +36,8 @@ public class Report {
 		Timestamp currentTimestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
 		System.out.println(currentTimestamp);
 
-		String u_name = "brijesh@studio.com";
-		String u_pass = "qwerty";
+		String u_name = "mihir@dronamobile.com";
+		String u_pass = "Qwe@1234";
 		String con_name, con_string, con_uname, con_upass, con_db;
 		// System.out.println(detailDAO.connectionName()+"\n"+detailDAO.connectionString());
 		String os=System.getProperty("os.name").toLowerCase();
